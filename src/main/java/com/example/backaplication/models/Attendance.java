@@ -1,15 +1,17 @@
 package com.example.backaplication.models;
 
+import com.example.backaplication.helper.AttendanceStatus;
+
 import java.util.Date;
 
 public class Attendance {
     private Integer idAttendance;
     private Date date;
-    private String status;
+    private AttendanceStatus status;
 
     public Attendance() {}
 
-    public Attendance(Integer idAttendance, Integer idStudent, Integer idCourse, Date date, String status) {
+    public Attendance(Integer idAttendance, Integer idStudent, Integer idCourse, Date date, AttendanceStatus status) {
         this.idAttendance = idAttendance;
         this.date = date;
         this.status = status;
@@ -31,11 +33,11 @@ public class Attendance {
         this.date = date;
     }
 
-    public String getStatus() {
+    public AttendanceStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(AttendanceStatus status) {
         this.status = status;
     }
 }
