@@ -1,28 +1,65 @@
 package com.example.backaplication.models;
 
 import com.example.backaplication.helper.AttendanceStatus;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
+@Entity
+@Table(name = "attendance")
 public class Attendance {
-    private Integer idAttendance;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_attendance")
+    private Integer attendanceId;
+
+    @Column(name = "date")
     private Date date;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private AttendanceStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "id_student")
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "id_course")
+    private Course course;
+
 
     public Attendance() {}
 
-    public Attendance(Integer idAttendance, Integer idStudent, Integer idCourse, Date date, AttendanceStatus status) {
-        this.idAttendance = idAttendance;
+    public Attendance(Integer attendanceId, Date date, AttendanceStatus status) {
+        this.attendanceId = attendanceId;
         this.date = date;
         this.status = status;
     }
 
-    public Integer getIdAttendance() {
-        return idAttendance;
+    public Integer getAttendanceId() {
+        return attendanceId;
     }
 
-    public void setIdAttendance(Integer idAttendance) {
-        this.idAttendance = idAttendance;
+    public void setAttendanceId(Integer attendanceId) {
+        this.attendanceId = attendanceId;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public Date getDate() {

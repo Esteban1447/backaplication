@@ -1,19 +1,45 @@
 package com.example.backaplication.models;
 
 import com.example.backaplication.helper.Usertype;
+import jakarta.persistence.*;
 
+import java.util.List;
+
+@Entity
+@Table(name = "user")
 public class User {
-    private Integer idUser;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_user")
+    private Integer userId;
+
+    @Column
     private String name;
+
+    @Column
     private String email;
+
+    @Column
     private String password;
+
+    @Column
     private String phone;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_type")
     private Usertype userType;
+
+    @OneToMany(mappedBy = "user")
+    private List<Student> students;
+
+    @OneToMany(mappedBy = "user")
+    private List<Teacher> teachers;
 
     public User() {}
 
-    public User(Integer idUser, String name, String email, String password, String phone, Usertype userType) {
-        this.idUser = idUser;
+    public User(Integer userId, String name, String email, String password, String phone, Usertype userType) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -21,12 +47,12 @@ public class User {
         this.userType = userType;
     }
 
-    public Integer getIdUser() {
-        return idUser;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getName() {

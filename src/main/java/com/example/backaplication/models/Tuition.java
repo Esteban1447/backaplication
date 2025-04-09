@@ -1,10 +1,27 @@
 package com.example.backaplication.models;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "tuition")
 public class Tuition {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_tuition")
     private Integer tuitionId;
+
+    @Column(name = "tuition_date")
     private Date tuitionDate;
+
+    @ManyToOne
+    @JoinColumn(name = "id_student")
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "id_course")
+    private Course course;
 
     public Tuition() {}
 

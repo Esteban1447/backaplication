@@ -1,8 +1,27 @@
 package com.example.backaplication.models;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "subject")
 public class Subject {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_subject")
     private Integer subjectId;
+
+    @Column(name = "subject_name")
     private String subjectName;
+
+    @ManyToOne
+    @JoinColumn(name = "id_course")
+    private Course course;
+
+    @OneToMany(mappedBy = "subject")
+    private List<Grade> grades;
 
     public Subject() {}
 

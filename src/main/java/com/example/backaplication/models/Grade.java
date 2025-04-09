@@ -1,16 +1,38 @@
 package com.example.backaplication.models;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
+@Entity
+@Table(name = "grade")
 public class Grade {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_grade")
     private Integer gradeId;
+
+    @Column(name = "grade")
     private BigDecimal grade;
+
+    @Column(name = "evaluation_date")
+    private Date evaluationDate;
+
+    @ManyToOne
+    @JoinColumn(name = "id_student")
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "id_subject")
+    private Subject subject;
 
     public Grade() {}
 
-    public Grade(Integer gradeId, BigDecimal grade) {
+    public Grade(Integer gradeId, BigDecimal grade, Date evaluationDate) {
         this.gradeId = gradeId;
         this.grade = grade;
+        this.evaluationDate = evaluationDate;
     }
 
     public Integer getGradeId() {
@@ -29,5 +51,12 @@ public class Grade {
         this.grade = grade;
     }
 
+    public Date getEvaluationDate() {
+        return evaluationDate;
+    }
+
+    public void setEvaluationDate(Date evaluationDate) {
+        this.evaluationDate = evaluationDate;
+    }
 
 }
