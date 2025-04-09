@@ -1,5 +1,6 @@
 package com.example.backaplication.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,10 +20,12 @@ public class Grade {
     @Column(name = "evaluation_date")
     private Date evaluationDate;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_student")
     private Student student;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_subject")
     private Subject subject;

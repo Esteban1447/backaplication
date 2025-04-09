@@ -1,5 +1,7 @@
 package com.example.backaplication.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -22,16 +24,20 @@ public class Student {
     @Column
     private String address;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "student")
     private List<Tuition> tuitions;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "student")
     private List<Grade> grades;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "student")
     private List<Attendance> attendances;
 

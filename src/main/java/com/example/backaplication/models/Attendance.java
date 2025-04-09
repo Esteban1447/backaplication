@@ -1,6 +1,7 @@
 package com.example.backaplication.models;
 
 import com.example.backaplication.helper.AttendanceStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -21,6 +22,7 @@ public class Attendance {
     @Column(name = "status")
     private AttendanceStatus status;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_student")
     private Student student;

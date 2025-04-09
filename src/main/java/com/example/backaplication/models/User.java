@@ -1,6 +1,7 @@
 package com.example.backaplication.models;
 
 import com.example.backaplication.helper.Usertype;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -30,9 +31,11 @@ public class User {
     @Column(name = "user_type")
     private Usertype userType;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Student> students;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Teacher> teachers;
 
